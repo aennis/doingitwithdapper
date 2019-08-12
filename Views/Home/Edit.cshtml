@@ -1,0 +1,144 @@
+﻿@model ContactViewModel
+<!-- container -->
+<div class="ms-hero-page-override ms-hero-img-city2 ms-hero-bg-light-light">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Edit Contact</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card card-primary card-hero animated fadeInUp animation-delay-7">
+        <div class="card-body">
+            <div asp-validation-summary="All" class="text-danger f-s-15">
+                <p class="f-s-15"></p>
+
+            </div>
+            <form class="form-horizontal" method="post" asp-action="Edit">
+                <input asp-for="Id" type="hidden" />
+                <fieldset class="container">
+                    <div class="row form-group">
+                        <label asp-for="MatterNo" class="col-md-2 control-label">MatterNo</label>
+                        <div class="col-md-9">
+                            <input asp-for="MatterNo" type="text" class="form-control" placeholder="Matter No">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label asp-for="ContactName" class="col-md-2 control-label">Name</label>
+                        <div class="col-md-9">
+                            <input asp-for="ContactName" type="text" class="form-control" placeholder="Name">
+                            <span asp-validation-for="ContactName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label asp-for="PQE" class="col-md-2 control-label">PQE</label>
+                        <div class="col-md-9">
+                            <select asp-for="PQE" asp-items="@ViewBag.PQEsList" class="form-control selectpicker">
+                                <option value="0">Please Select One</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <label asp-for="PracticeArea" class="col-md-2 control-label">PracticeArea</label>
+                        <div class="col-md-9">
+                            <select asp-for="PracticeArea" asp-items="@ViewBag.PracticeAreaList" class="form-control selectpicker">
+                                <option value="0">Please Select One</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label asp-for="Firm" class="col-md-2 control-label">Firm</label>
+                        <div class="col-md-9">
+                            <select asp-for="Firm" asp-items="@ViewBag.FirmsList" class="form-control selectpicker">
+                                <option value="0">Please Select One</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label asp-for="Location" class="col-md-2 control-label">Location</label>
+                        <div class="col-md-9">
+                            <select asp-for="Location" asp-items="@ViewBag.LocationList" class="form-control selectpicker">
+                                <option value="0">Please Select One</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label asp-for="Source" class="col-md-2 control-label">Source</label>
+                        <div class="col-md-9">
+                            <select asp-for="Source" asp-items="@ViewBag.SourceList" class="form-control selectpicker">
+                                <option value="0">Please Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group" id="SourceOther">
+                        <label asp-for="SourceOther" class="col-md-2 control-label">Source Other</label>
+                        <div class="col-md-9">
+                            <label class="col-md-2 control-label color-danger">*</label>
+                            <input asp-for="SourceOther" type="text" class="form-control" placeholder="Do not include any client information or sensitive personal data">
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="offset-md-2">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-raised btn-primary btn-block">Save</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- container -->
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+<!-- container -->
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            if ($('#Source').Val() == 5) {
+                $("#SourceOther").show();
+            } else {
+                $("#SourceOther").hide();
+            }
+          
+
+            $(document).keypress(function (e) {
+                if (e.which == 13) {
+                    return false;
+                }
+            });
+
+            $('#Source').on('change', function () {
+                if (this.value == 5) {
+                 swal({
+                     title: '',
+                     text: "Type in reason for connection but please do not include any client information or sensitive personal data.",
+                     type: 'warning',
+                     showCancelButton: false,
+                     confirmButtonClass: 'btn btn-confirm mt-2',
+                     cancelButtonClass: 'btn btn-cancel ml-2 mt-2',
+                     confirmButtonText: 'Ok'
+                     }).then(function () {
+                        $("#SourceOther").show();
+                 })
+                } else {
+                    $("#SourceOther").hide();
+                }
+            });
+
+        });
+
+    </script>
+}

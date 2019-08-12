@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" />
+    <meta name="viewport" content="width=device-width, initial0-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link runat="server" rel="shortcut icon" href="~/favicon.ico"  />
+    <link href="~/lib/themes/material/css/preload.css" rel="stylesheet" />
+    <link href="~/lib/themes/material/css/plugins.css" rel="stylesheet" />
+    <link href="~/lib/themes/material/css/style.red-500.min.css" rel="stylesheet" />
+    <link href="~/lib/themes/material/plugins/toastr/toastr.css" rel="stylesheet" />
+    <link href="~/lib/themes/material/plugins/sweet-alert/sweetalert2.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+
+
+    <script src="~/lib/themes/material/plugins/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/themes/material/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+    <script src="~/lib/themes/material/js/plugins.min.js"></script>
+    <script src="~/lib/themes/material/plugins/sweet-alert/sweetalert2.js"></script>
+    <script src="~/lib/themes/material/js/app.min.js"></script>
+    <script src="~/lib/themes/material/js/lead.js"></script>
+    <script src="~/lib/themes/material/plugins/toastr/toastr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body>
+    <div id="ms-preload" class="ms-preload">
+        <div id="status">
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ms-site-container">
+        <header class="ms-header ms-header-primary">
+            <!--ms-header-primary-->
+            <div class="container container-full">
+                <div class="ms-title">
+                    <a asp-controller="Home" asp-action="Index">
+                        <span class="ms-logo animated zoomInDown animation-delay-5">M</span>
+                        <h1 class="animated fadeInRight animation-delay-6">
+                            Contacts
+                            <span> <abbr>Directory</abbr></span>
+                        </h1>
+                    </a>
+                </div>
+                <div class="header-right">
+
+                    <form asp-controller="Home" asp-action="Index" class="search-form animated zoomInDown animation-delay-9">
+                        <input id="search" type="text" class="search-input" placeholder="Search..." name="search" />
+                        <label for="search">
+                            <i class="zmdi zmdi-search"></i>
+                        </label>
+                    </form>
+                    <a href="javascript:void(0)" class="btn-ms-menu btn-circle btn-circle-primary ms-toggle-left animated zoomInDown animation-delay-10">
+                        <i class="zmdi zmdi-menu"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-md  navbar-static ms-navbar ms-navbar-primary">
+            <div class="container container-full">
+                <div class="navbar-header">
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                        <span class="ms-logo ms-logo-sm">C</span>
+                        <span class="ms-title">
+                            <strong>Contacts</strong>
+                        </span>
+                    </a>
+                </div>
+                <a href="javascript:void(0)" class="ms-toggle-left btn-navbar-menu">
+                    <i class="zmdi zmdi-menu"></i>
+                </a>
+            </div>
+            <!-- container -->
+        </nav>
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+        <div class="ms-slidebar sb-slidebar sb-left sb-style-overlay" id="ms-slidebar">
+            <div class="sb-slidebar-container">
+                <header class="ms-slidebar-header color-primary">
+                    <div class="ms-slidebar-title">
+                        <form asp-controller="Home" asp-action="Index" class="search-form">
+                            <input id="search-box-slidebar" type="text" class="search-input" placeholder="Search..." name="search" />
+                            <label for="search-box-slidebar" class="color-white">
+                                <i class="zmdi zmdi-search"></i>
+                            </label>
+                        </form>
+                        <div class="ms-slidebar-t">
+                            <span class="ms-logo ms-logo-sm">C</span>
+                            <h3>
+                                Contacts
+                                <span>Directory</span>
+                            </h3>
+
+                        </div>
+                    </div>
+                </header>
+
+                <ul class="ms-slidebar-menu" id="slidebar-menu" role="tablist" aria-multiselectable="true">
+                    <li class="card" role="tab" id="sch1">
+                        <ul id="sc1" class="card-block" role="tabpanel" aria-labelledby="sch1" data-parent="#slidebar-menu">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index" role="button">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Contact" role="button">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="ms-slidebar-social ms-slidebar-block">
+                </div>
+            </div>
+        </div>
+        <footer class="ms-footer">
+         
+            <div class="container">
+                <p>
+                    @User.Identity.Name
+                </p>
+            </div>
+        </footer>
+        <div class="btn-back-top">
+            <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised ">
+                <i class="zmdi zmdi-long-arrow-up"></i>
+            </a>
+        </div>
+    </div>
+    @await Component.InvokeAsync("NToastNotify")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿
+
+/*this is used for letter based avatar*/
+pre {
+    margin: 20px 0;
+    padding: 20px;
+    background: #ff0000;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+/*
+    this shoukd be added to theme for sticky footer,
+    putting here to save minimizing file for now
+
+*/
